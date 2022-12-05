@@ -33,7 +33,7 @@ class _LinkTextState extends State<LinkText> {
                 widget.text,
                 style: TextStyle(
                   color: Colors.grey[700],
-                  fontSize: 16,
+                  fontSize: 14,
                   //decoration: isHover ? TextDecoration.underline : TextDecoration.none,
                 ),
               ),

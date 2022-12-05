@@ -17,6 +17,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scrollbarTheme: ScrollbarThemeData(
+          thickness: MaterialStateProperty.all(10),
+          radius: const Radius.circular(10),
+          thumbColor: MaterialStateProperty.all(Colors.grey.withOpacity(0.5)),
+        ),
       ),
       initialRoute: '/',
       onGenerateRoute: Flurorouter.router.generator,

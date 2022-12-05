@@ -13,18 +13,14 @@ class AuthLayout extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: Colors.black,
-        body: ListView(
-          physics: const ClampingScrollPhysics(),
-          children: [
-            size.width > 800
-// Desktop
-                ? _DesktopBody(child: child)
-
-// Mobile
-                : _Mobilebody(child: child),
-// Links
-            const LinksBar()
-          ],
+        body: Scrollbar(
+          child: ListView(
+            physics: const ClampingScrollPhysics(),
+            children: [
+              size.width > 800 ? _DesktopBody(child: child) : _Mobilebody(child: child),
+              const LinksBar(),
+            ],
+          ),
         ));
   }
 }
