@@ -62,7 +62,7 @@ class _DesktopBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      color: Colors.red,
+      color: Colors.black,
       width: size.width,
       height: size.height - 25,
       child: Row(

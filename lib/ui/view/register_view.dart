@@ -12,7 +12,6 @@ class RegisterView extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 100),
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      //   color: Colors.red,
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 370),
@@ -56,7 +55,7 @@ class RegisterView extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 LinkText(
-                  text: 'Nueva cuenta',
+                  text: 'Login',
                   onTap: () => Navigator.pushNamed(
                     context,
                     Flurorouter.loginRoute,
