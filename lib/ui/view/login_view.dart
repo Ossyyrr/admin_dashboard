@@ -22,6 +22,7 @@ class LoginView extends StatelessWidget {
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 370),
               child: Form(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 key: loginFormProvider.formKey, // Da acceso en mi provider a todo el estado del formulario
                 child: Column(
                   children: [
