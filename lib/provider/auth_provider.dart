@@ -1,4 +1,5 @@
 import 'package:admin_dashboard/service/local_storage.dart';
+import 'package:admin_dashboard/service/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 enum AuthStatus {
@@ -18,15 +19,14 @@ class AuthProvider extends ChangeNotifier {
   void login(String email, String password) {
     String? token = 'aaa';
 
-    print('Almacenar JWT:  $token');
-
     // TODO Petición HTTP
     LocalStorage.prefs.setString('token', token);
-    LocalStorage.prefs.getString('token');
-
-    // TODO Navegar al dashboard
-
+    authStatus = AuthStatus.authenticated;
     notifyListeners();
+
+    NavigationService.replaceTo('/dashboard');
+
+    isAuthenticated();
   }
 
   Future<bool> isAuthenticated() async {

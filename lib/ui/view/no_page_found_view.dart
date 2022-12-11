@@ -12,7 +12,7 @@ class NoPageFoundView extends StatelessWidget {
         style: GoogleFonts.montserratAlternates(
           fontSize: 50,
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+          color: Colors.red,
         ),
       ),
     );

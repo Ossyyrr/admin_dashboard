@@ -4,6 +4,7 @@ import 'package:admin_dashboard/service/local_storage.dart';
 import 'package:admin_dashboard/service/navigation_service.dart';
 import 'package:admin_dashboard/ui/layout/auth/auth_layout.dart';
 import 'package:admin_dashboard/ui/layout/dashboard/dashboard_layout.dart';
+import 'package:admin_dashboard/ui/layout/splash/splash_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -51,20 +52,13 @@ class MyApp extends StatelessWidget {
         navigatorKey: NavigationService.navigatorKey,
         builder: (_, child) {
           final AuthProvider authProvider = Provider.of<AuthProvider>(context);
-
           if (authProvider.authStatus == AuthStatus.notAuthenticated) {
             return AuthLayout(child: child!);
           }
           if (authProvider.authStatus == AuthStatus.authenticated) {
             return DashboardLayout(child: child!);
           }
-          return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-
-          // LocalStorage.prefs.getString('token');
+          return const SplashLayout();
         });
   }
 }
