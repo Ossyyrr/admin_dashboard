@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/provider/side_menu_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,7 +25,8 @@ class _CustomMenuItemState extends State<CustomMenuItem> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeOut,
       color: isHovered
           ? Colors.white.withOpacity(0.1)
           : widget.isActive
@@ -33,14 +35,18 @@ class _CustomMenuItemState extends State<CustomMenuItem> {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: widget.isActive ? null : () => widget.onPressed(),
+          onTap: widget.isActive
+              ? null
+              : () {
+                  SideMenuProvider.closeMenu();
+                  widget.onPressed();
+                },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             child: MouseRegion(
                 onEnter: (event) => setState(() => isHovered = true),
                 onExit: (event) => setState(() => isHovered = false),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(widget.icon, color: Colors.white30),
                     const SizedBox(width: 10),
