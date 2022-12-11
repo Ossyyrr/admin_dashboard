@@ -5,14 +5,16 @@ class LoginFormProvider extends ChangeNotifier {
 
   String email = '';
   String password = '';
-
-  validateForm() {
+  bool validateForm() {
     // formKey.currentState!.validate() pasa las validaciones de todos los textFormFields y devuelve true si todo está bien
     if (formKey.currentState!.validate()) {
       print('Formulario válido');
       print('$email - $password');
-    } else {
       print('Formulario inválido');
+      return true;
+    } else {
+      print('formulario inválido');
+      return false;
     }
   }
 }
