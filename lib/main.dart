@@ -1,4 +1,5 @@
 import 'package:admin_dashboard/provider/auth_provider.dart';
+import 'package:admin_dashboard/provider/side_menu_provider.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/service/local_storage.dart';
 import 'package:admin_dashboard/service/navigation_service.dart';
@@ -24,6 +25,10 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
           lazy: false,
           create: (_) => AuthProvider(),
+        ),
+        ChangeNotifierProvider(
+          lazy: false,
+          create: (_) => SideMenuProvider(),
         ),
       ],
       child: const MyApp(),

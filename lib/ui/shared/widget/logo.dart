@@ -11,13 +11,13 @@ class Logo extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.bubble_chart_outlined, color: Color(0xff7a6bf5), size: 40),
+          Icon(Icons.bubble_chart_outlined, color: Colors.white.withOpacity(0.3), size: 40),
           const SizedBox(width: 10),
           Text(
             'Admin',
             style: GoogleFonts.montserratAlternates(fontSize: 20, fontWeight: FontWeight.w200, color: Colors.white),
           ),
-          const SizedBox(width: 10),
+          const SizedBox(width: 20),
         ],
       ),
     );

@@ -1,9 +1,8 @@
-import 'package:admin_dashboard/ui/cards/white_card.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 import 'package:flutter/material.dart';
 
-class DashboardView extends StatelessWidget {
-  const DashboardView({super.key});
+class BlankView extends StatelessWidget {
+  const BlankView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +12,7 @@ class DashboardView extends StatelessWidget {
       children: [
         Text('Dashboard view', style: CustomLabels.h1),
         const SizedBox(height: 10),
-        const WhiteCard(title: 'Sales Statistics', child: Text('Hola mundo')),
+        //   const WhiteCard(title: 'Sales Statistics', child: Text('Hola mundo')),
       ],
     ));
   }

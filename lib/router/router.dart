@@ -15,6 +15,8 @@ class Flurorouter {
   // Dashboard
 
   static String dashboardRoute = '/dashboard';
+  static String iconsRoute = '/dashboard/icons';
+  static String blankRoute = '/dashboard/blank';
 
   static void configureRoutes() {
     // Auth routes
@@ -23,8 +25,9 @@ class Flurorouter {
     router.define(registerRoute, handler: AdminHandlers.register, transitionType: TransitionType.none);
 
     // Dashboard routes
-
-    router.define(dashboardRoute, handler: DashboardHandlers.dashboard);
+    router.define(dashboardRoute, handler: DashboardHandlers.dashboard, transitionType: TransitionType.none);
+    router.define(iconsRoute, handler: DashboardHandlers.icons, transitionType: TransitionType.none);
+    router.define(blankRoute, handler: DashboardHandlers.blank, transitionType: TransitionType.none);
 
     //404
     router.notFoundHandler = NoPageFoundHandlers.noPageFound;

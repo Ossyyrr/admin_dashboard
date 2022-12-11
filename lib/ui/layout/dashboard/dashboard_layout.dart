@@ -36,7 +36,11 @@ class _DashboardLayoutState extends State<DashboardLayout> with SingleTickerProv
                 child: Column(
                   children: [
                     const Navbar(),
-                    Expanded(child: widget.child),
+                    Expanded(
+                        child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: widget.child,
+                    )),
                   ],
                 ),
               ),
