@@ -4,6 +4,7 @@ import 'package:admin_dashboard/provider/side_menu_provider.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/service/local_storage.dart';
 import 'package:admin_dashboard/service/navigation_service.dart';
+import 'package:admin_dashboard/service/notifications_service.dart';
 import 'package:admin_dashboard/ui/layout/auth/auth_layout.dart';
 import 'package:admin_dashboard/ui/layout/dashboard/dashboard_layout.dart';
 import 'package:admin_dashboard/ui/layout/splash/splash_layout.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         onGenerateRoute: Flurorouter.router.generator,
         navigatorKey: NavigationService.navigatorKey,
+        scaffoldMessengerKey: NotificationsService.messengerKey, // Key para mostrar snackbar
         builder: (_, child) {
           final AuthProvider authProvider = Provider.of<AuthProvider>(context);
           if (authProvider.authStatus == AuthStatus.notAuthenticated) {

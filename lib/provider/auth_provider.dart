@@ -3,6 +3,7 @@ import 'package:admin_dashboard/models/http/auth_response.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/service/local_storage.dart';
 import 'package:admin_dashboard/service/navigation_service.dart';
+import 'package:admin_dashboard/service/notifications_service.dart';
 import 'package:flutter/material.dart';
 
 enum AuthStatus {
@@ -41,6 +42,7 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     }).catchError((e) {
       print('error en: $e');
+      NotificationsService.showSnackbarError('Usuario/Password no válidos: ' + e);
     });
   }
 
