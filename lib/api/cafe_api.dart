@@ -6,17 +6,10 @@ class CafeApi {
 
   static void configureDio() {
     // Base del url
-    // _dio.options.baseUrl = 'http://localhost:8080/api';
+    _dio.options.baseUrl = 'http://localhost:8080/api';
 
     // Configurar Headers
-    _dio.options.headers = {
-      'x-token': LocalStorage.prefs.getString('token') ?? '',
-      // 'Content-Type': 'application/json',
-      // 'Accept': 'application/json',
-      // "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
-      // "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
-      // "Access-Control-Allow-Methods": "GET, POST, OPTIONS"
-    };
+    _dio.options.headers = {'x-token': LocalStorage.prefs.getString('token') ?? ''};
   }
 
   static Future httpGet(String path) async {
