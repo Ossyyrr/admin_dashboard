@@ -12,8 +12,6 @@ class LoginView extends StatelessWidget {
   const LoginView({super.key});
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
-
     return ChangeNotifierProvider(
       create: (_) => LoginFormProvider(),
       child: Builder(builder: (context) {
@@ -30,6 +28,7 @@ class LoginView extends StatelessWidget {
                 child: Column(
                   children: [
                     TextFormField(
+                      onFieldSubmitted: (_) => onFormSubmit(context), //al pulsar Intro
                       validator: (value) {
                         if (!EmailValidator.validate(value ?? '')) return 'Email no válido';
                         return null;
@@ -44,6 +43,7 @@ class LoginView extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                        onFieldSubmitted: (_) => onFormSubmit(context), //al pulsar Intro
                         onChanged: (value) => loginFormProvider.password = value,
                         validator: (value) {
                           if (value == null || value.isEmpty) return 'Ingrese su contraseña';
@@ -60,12 +60,7 @@ class LoginView extends StatelessWidget {
                     const SizedBox(height: 20),
                     CustomOutlineButton(
                       text: 'Ingresar',
-                      onPressed: () {
-                        final isValid = loginFormProvider.validateForm();
-                        if (isValid) {
-                          authProvider.login(email: loginFormProvider.email, password: loginFormProvider.password);
-                        }
-                      },
+                      onPressed: () => onFormSubmit(context),
                     ),
                     const SizedBox(height: 20),
                     LinkText(
@@ -83,5 +78,15 @@ class LoginView extends StatelessWidget {
         );
       }),
     );
+  }
+
+  void onFormSubmit(BuildContext context) {
+    final loginFormProvider = Provider.of<LoginFormProvider>(context, listen: false);
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+    final isValid = loginFormProvider.validateForm();
+    if (isValid) {
+      authProvider.login(email: loginFormProvider.email, password: loginFormProvider.password);
+    }
   }
 }
