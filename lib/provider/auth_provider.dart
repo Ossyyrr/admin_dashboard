@@ -30,8 +30,8 @@ class AuthProvider extends ChangeNotifier {
       authStatus = AuthStatus.authenticated;
       LocalStorage.prefs.setString('token', authResponse.token);
       NavigationService.replaceTo(Flurorouter.dashboardRoute);
+      CafeApi.configureDio(); // Configurar el nuevo token en el header
       notifyListeners();
-      isAuthenticated();
     }).catchError((e) {
       print('error en: $e');
       NotificationsService.showSnackbarError('Usuario/Password no válidos: ' + e);
@@ -47,6 +47,7 @@ class AuthProvider extends ChangeNotifier {
       authStatus = AuthStatus.authenticated;
       LocalStorage.prefs.setString('token', authResponse.token);
       NavigationService.replaceTo(Flurorouter.dashboardRoute);
+      CafeApi.configureDio(); // Configurar el nuevo token en el header
       notifyListeners();
     }).catchError((e) {
       print('error en: $e');
@@ -55,16 +56,27 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<bool> isAuthenticated() async {
-    final token = LocalStorage.prefs.getString('token');
-    if (token != null) {
+    try {
+      final response = await CafeApi.httpGet('/auth');
+      final authResponse = AuthResponse.fromMap(response);
+      user = authResponse.usuario;
       authStatus = AuthStatus.authenticated;
+      LocalStorage.prefs.setString('token', authResponse.token);
       notifyListeners();
       return true;
-    } else {
-      await Future.delayed(const Duration(milliseconds: 500)); //Simular delay petición HTTP
+    } catch (e) {
+      print(e);
       authStatus = AuthStatus.notAuthenticated;
       notifyListeners();
       return false;
     }
+  }
+
+  void logout() {
+    LocalStorage.prefs.remove('token');
+    authStatus = AuthStatus.notAuthenticated;
+    user = null;
+    notifyListeners();
+    NavigationService.replaceTo(Flurorouter.loginRoute);
   }
 }
